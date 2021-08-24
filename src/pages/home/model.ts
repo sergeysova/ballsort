@@ -28,5 +28,5 @@ export const restartClicked = createEvent<MouseEvent<HTMLButtonElement>>();
 export const toMainMenuClicked = createEvent<MouseEvent<HTMLButtonElement>>();
 export const tubeClicked = createEvent<MouseEvent<HTMLDivElement>>();
 
-export const $state = createStore<'start' | 'ingame' | 'won'>('won');
+export const $state = createStore<'start' | 'ingame' | 'won'>('start');
 export const $moves = createStore(0);
