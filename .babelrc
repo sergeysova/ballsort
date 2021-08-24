@@ -1,0 +1,4 @@
+{
+  "plugins": ["effector/babel-plugin"],
+  "presets": ["react-app"]
+}

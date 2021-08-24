@@ -1,0 +1,49 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin", "react", "unicorn"],
+  "extends": [
+    "react-app",
+    "@atomix/eslint-config-react",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx"],
+      "env": { "jest": true },
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-plugin/recommended",
+        "plugin:@typescript-eslint/eslint-plugin/eslint-recommended"
+      ],
+      "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ],
+  "rules": {
+    "import/extensions": ["off", "ignorePackages", "error"],
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "no-use-before-define": "off",
+    "react/jsx-wrap-multilines": "off",
+    "unicorn/no-null": "off",
+    "no-magic-numbers": "off",
+    "unicorn/number-literal-case": "off"
+  },
+  "env": {
+    "browser": true
+  }
+}
