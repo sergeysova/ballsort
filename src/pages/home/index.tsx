@@ -58,8 +58,13 @@ export const InPlay: React.FC = () => {
           onClick={tubeClicked}
         />
         <Tube
-          tube={{ balls: [6, 7, 8], over: null, complete: false }}
+          tube={{ balls: [6, 7, 8], over: 1, complete: false }}
           position={2}
+          onClick={tubeClicked}
+        />
+        <Tube
+          tube={{ balls: [9, 10, 11, 11], over: null, complete: true }}
+          position={3}
           onClick={tubeClicked}
         />
       </Container>
