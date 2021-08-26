@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import * as React from 'react';
-import { useStore } from 'effector-react';
+import { useList, useStore } from 'effector-react';
 import styled from 'styled-components';
 import {
+  $field,
   $moves,
   $state,
   BallColor,
@@ -37,6 +38,13 @@ const $isWon = $state.map((state) => state === 'won');
 
 export const InPlay: React.FC = () => {
   const isWon = useStore($isWon);
+  const tubes = useList($field, ({ balls, over, complete }, index) => (
+    <Tube
+      tube={{ balls, over, complete }}
+      position={index}
+      onClick={tubeClicked}
+    />
+  ));
 
   return (
     <>
@@ -45,29 +53,7 @@ export const InPlay: React.FC = () => {
         <Button onClick={restartClicked} text="Restart" />
         <Moves />
       </div>
-      <Container>
-        {/* Tubes */}
-        <Tube
-          tube={{ balls: [0, 1, 2], over: null, complete: false }}
-          position={0}
-          onClick={tubeClicked}
-        />
-        <Tube
-          tube={{ balls: [3, 4, 5], over: null, complete: false }}
-          position={1}
-          onClick={tubeClicked}
-        />
-        <Tube
-          tube={{ balls: [6, 7, 8], over: 1, complete: false }}
-          position={2}
-          onClick={tubeClicked}
-        />
-        <Tube
-          tube={{ balls: [9, 10, 11, 11], over: null, complete: true }}
-          position={3}
-          onClick={tubeClicked}
-        />
-      </Container>
+      <Container>{tubes}</Container>
       {isWon && <WonScreen />}
     </>
   );
@@ -95,18 +81,18 @@ const Tube: React.FC<TubeProps> = ({ tube, position, onClick }) => (
 );
 
 const colors: Record<BallColor, [string, string]> = {
-  0x0: ['#8F7E22', '#FFE600'],
-  0x1: ['#247516', '#70FF00'],
-  0x2: ['#466799', '#00B2FF'],
-  0x3: ['#29777C', '#00FFF0'],
-  0x4: ['#17206F', '#4A72FF'],
-  0x5: ['#BABABA', '#FFFFFF'],
-  0x6: ['#4C3283', '#9D50FF'],
-  0x7: ['#8B11C5', '#FF00F5'],
-  0x8: ['#9D0D41', '#FF60B5'],
-  0x9: ['#4B0000', '#FF0000'],
-  0xa: ['#79480F', '#FF7A00'],
-  0xb: ['#343434', '#B1B1B1'],
+  0: ['#8F7E22', '#FFE600'],
+  1: ['#247516', '#70FF00'],
+  2: ['#466799', '#00B2FF'],
+  3: ['#29777C', '#00FFF0'],
+  4: ['#17206F', '#4A72FF'],
+  5: ['#BABABA', '#FFFFFF'],
+  6: ['#4C3283', '#9D50FF'],
+  7: ['#8B11C5', '#FF00F5'],
+  8: ['#9D0D41', '#FF60B5'],
+  9: ['#4B0000', '#FF0000'],
+  10: ['#79480F', '#FF7A00'],
+  11: ['#343434', '#B1B1B1'],
 };
 
 const BallComponent: React.FC<{ ball: BallColor; className?: string }> = ({
